@@ -1,0 +1,1 @@
+The Vue message means that there is a property defined in the Vue app that is not being used anywhere. It won't break the web page, but can be fixed by making sure you are using all of your defined properties somewhere in the web page.

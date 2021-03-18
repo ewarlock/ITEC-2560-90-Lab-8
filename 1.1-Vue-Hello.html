@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Hello Vue</title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+
+<body>
+
+    <div id="app"> <!--all of the page that vue will manage-->
+        <h1>Hello Vue</h1> <!--static-->
+        <p>
+            {{ message }} <!--vue stuff--> <!--lol a mustache syntax-->
+        </p>
+
+        <p> {{messageWithExclamationPoints}} </p>
+
+        <button v-on:click = "addExclamation">Add !</button> 
+        <button v-on:click = "removeAllExclamation">Clear all !</button>
+        <!--vue directive v-on, click is name of event-->
+        <!--& value is the name of the new vue method-->
+    </div>
+
+    <script>
+
+        let app = Vue.createApp({ //info about this app is stored in an object
+            data() {
+                return {
+                    message: "hi",
+                    maxExclamationPoints: 10,
+                    exclamationPoints: 0
+                }
+            }, //don't forget commas
+            methods: {
+                addExclamation() {
+                    if (this.exclamationPoints >= this.maxExclamationPoints) return
+                    //this.message = this.message + "!" 
+                    this.exclamationPoints++
+                    //always use this when referencing data within vue
+                },
+                removeAllExclamation() {
+                    this.exclamationPoints = 0
+
+                }
+            },
+            computed: { //this is a computed property tied to the counter defined earlier
+                messageWithExclamationPoints() {
+                    let messageWithPoints = this.message
+                    for (let x = 0; x < this.exclamationPoints ; x++) {
+                        messageWithPoints = messageWithPoints + "!"
+                    }
+                    return messageWithPoints
+                }
+            }
+        })
+
+        app.mount("#app") //mount vue to selected element in this case the div
+
+    </script>
+</body>
+</html>

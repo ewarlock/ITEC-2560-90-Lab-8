@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Hello Vue</title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+
+<body>
+
+    <div id="app"> <!--all of the page that vue will manage-->
+
+        <h1>Hello Vue Forms</h1>
+
+        <label for="name">Please enter your name:</label>
+        <input v-model="name" id="name"> <!--v-model name is connected to name in data-->
+
+        <!--Conditional Rendering... "render this if name truthy"-->
+        <!--another example v-if="name.length < 2"-->
+        <p v-if="name">
+            Your name is: {{ name }}
+            <br><button v-on:click="clear">Clear Input</button>
+        </p>
+        <p v-else>
+            Waiting for user input.
+        </p>
+        <!--v-else has to be right after v-if-->
+
+
+    </div>
+
+    <script>
+
+//love how this just... works
+        let app = Vue.createApp({
+            data() {
+                return {
+                    name: ""
+                }
+            },
+            methods: {
+                clear() {
+                    this.name = ""
+                }
+            }
+        })
+
+        app.mount("#app") //mount vue to selected element in this case the div
+
+    </script>
+</body>
+</html>
